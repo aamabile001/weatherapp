@@ -28,7 +28,7 @@ def get_weather():
     weather_url = f'http://api.openweathermap.org/data/2.5/weather?q={location}&appid='
     final_url = weather_url + API_key
     weather_data= requests.get(final_url).json()
-    #clean_data = json.load(weather_data)
+   
     weather_summary = weather_data['weather'][0]['description']
     temp = round(((weather_data['main']['temp'])-273.15)*9/5 + 32, 0) 
     wind = round(weather_data['wind']['speed'] * 2.237, 0)
@@ -44,10 +44,6 @@ def get_weather():
 
     label5 = tk.Label(window, text= f'The wind is {wind:.0f} MPH out of the {winddir}.',font=('helvetica', 9))
     canvas1.create_window(200, 270, window=label5)
-
-# label4 = tk.Label(window, text= weather_data,font=('helvetica', 10, 'bold'))
-# canvas1.create_window(200, 230, window=label4)
-
 
 button = tk.Button(text='Go!', command=get_weather)
 canvas1.create_window(200, 180, window=button)
